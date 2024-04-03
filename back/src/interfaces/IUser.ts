@@ -1,4 +1,10 @@
 interface Iuser {
-    id:string,
-    nombre: string
+    id:number,
+    name: string,
+    email: string,
+    birthdate: number,
+    nDni: number,
+    
 }
+
+export default Iuser

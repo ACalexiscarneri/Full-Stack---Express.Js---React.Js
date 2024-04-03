@@ -1,5 +1,6 @@
 import  {Router}  from "express";
-const router = Router();
+const router:Router = Router();
+
 import userRouter from "./userRouter";
 import shiftsRouter from "./shiftsRouter";
 

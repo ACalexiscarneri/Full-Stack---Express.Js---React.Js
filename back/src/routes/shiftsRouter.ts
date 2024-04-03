@@ -1,18 +1,18 @@
 import {Router} from "express"
+import { getAllShifts, getShiftById,schedule,cancel} from "../controllers/shiftsController";
 
 const shiftsRouter = Router();
+
 // ruta para obtner todos los turnos
-shiftsRouter.get("/", ()=>{
+shiftsRouter.get("/", getAllShifts)
 
-})
 // ruta para obtener un detalle especifico del turn.
-shiftsRouter.get("/", ()=>{
-    
-})
-// ruta para crear un nuevo turno.
-shiftsRouter.post("/",()=>{
+shiftsRouter.get("/:id", getShiftById)
 
-})
+// ruta para crear un nuevo turno.
+shiftsRouter.post("/schedule", schedule)
+
+shiftsRouter.put("/cencel" , cancel)
 
 export default shiftsRouter;
 

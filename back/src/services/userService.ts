@@ -14,10 +14,21 @@ const createUserService = async(userdata:userDto):Promise<IUser>=>{
     nDni: userdata.nDni
    }
    users.push(newUser);
-
+   id++;
    return newUser;
 
 }
 
+const getUsersService = async():Promise<IUser[]>=>{
+  return users;
+}
 
-export default createUserService
+const getUserByIdService = (id:number)=>{
+   const usersId = users.filter((user:IUser)=>{
+      return user.id === id;
+   })
+   return usersId;
+}
+
+
+export  {createUserService , getUsersService,getUserByIdService}

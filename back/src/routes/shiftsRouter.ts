@@ -7,7 +7,7 @@ const shiftsRouter = Router();
 shiftsRouter.get("/", getAllShifts)
 
 // ruta para obtener un detalle especifico del turn.
-shiftsRouter.get("/:id", getShiftById)
+shiftsRouter.get("/shift", getShiftById)
 
 // ruta para crear un nuevo turno.
 shiftsRouter.post("/schedule", schedule)

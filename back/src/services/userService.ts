@@ -24,11 +24,11 @@ const getUsersService = async():Promise<IUser[]>=>{
 }
 
 const getUserByIdService = (id:number)=>{
-   const usersId = users.filter((user:IUser)=>{
+   const usersId = users.find((user:IUser)=>{
       return user.id === id;
    })
-   return usersId;
+   
+   return usersId
 }
 
-
-export  {createUserService , getUsersService,getUserByIdService}
+export  {createUserService , getUsersService, getUserByIdService}

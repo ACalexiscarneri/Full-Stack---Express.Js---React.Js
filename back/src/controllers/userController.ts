@@ -10,7 +10,7 @@ const getAllUser = async (req:Request, res:Response)=>{
 
 const getUserById = async(req:Request, res:Response)=>{
     const {id} = req.body;
-   const user = await getUserByIdService(id)
+   const user:IUser | undefined = await getUserByIdService(id)
     res.status(201).json(user);
 }
 

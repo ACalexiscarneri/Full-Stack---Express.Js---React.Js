@@ -1,7 +1,9 @@
-interface Ishift {
+interface IShift {
     id: number,
-    date:number,
-    time:number,
-    status:string,
+    date:Date,
+    time:Date,
+    status:boolean,
     userId:number,
 }
+
+export default IShift;

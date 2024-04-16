@@ -1,8 +1,10 @@
+import { status } from "../Dto/shiftDto";
+
 interface IShift {
     id: number,
     date:Date,
     time:Date,
-    status:boolean,
+    status:status,
     userId:number,
 }
 

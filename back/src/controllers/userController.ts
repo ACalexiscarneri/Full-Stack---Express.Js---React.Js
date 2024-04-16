@@ -15,8 +15,8 @@ const getUserById = async(req:Request, res:Response)=>{
 }
 
 const register = async(req:Request,res:Response)=>{
-    const{ name,email,birthdate,nDni} = req.body;
-    const newUser:IUser = await createUserService({ name,email,birthdate,nDni})
+    const{ name,email,birthdate,nDni,username,password} = req.body;
+    const newUser:IUser = await createUserService({ name,email,birthdate,nDni,username,password})
     res.status(201).json(newUser);
 }
 

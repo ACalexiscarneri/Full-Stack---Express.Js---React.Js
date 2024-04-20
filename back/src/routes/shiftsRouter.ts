@@ -12,7 +12,7 @@ shiftsRouter.get("/shift", getShiftById)
 // ruta para crear un nuevo turno.
 shiftsRouter.post("/schedule", schedule)
 
-shiftsRouter.put("/cencel" , cancel)
+shiftsRouter.put("/cancel" , cancel)
 
 export default shiftsRouter;
 

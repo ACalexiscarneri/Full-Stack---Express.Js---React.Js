@@ -16,13 +16,15 @@ const getShiftByIdService = async(id:number):Promise<IShift | undefined>=>{
 
 }
 
+const date = new Date();
+const time = new Date()
 
 const createShiftService = async(appdata:shiftDto):Promise<IShift | undefined>=>{
     if(appdata.userId){
         const newshift:IShift = {
             id,
-            date: appdata.date,
-            time: appdata.time,
+            date: date,
+            time: time,
             status: status.ACTIVO,
             userId: appdata.userId
             
@@ -35,10 +37,12 @@ const createShiftService = async(appdata:shiftDto):Promise<IShift | undefined>=>
 }
 
 const cancelShiftService = async(id:number)=>{
-    const shiftId = shifts.find((shift:IShift)=>shift.id === id)
+    const shiftId: shiftDto | undefined = shifts.find((shift:IShift)=>shift.id === id)
     if(shiftId){
-        status.CANCELADO;
+        shiftId.status = status.CANCELADO;
     }
+    
+    return shiftId;
 }
 
 export {getShiftsService,getShiftByIdService,createShiftService,cancelShiftService}

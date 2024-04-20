@@ -7,9 +7,10 @@ let id:number = 1;
 const createCredentialsService = async (username:string,password:string):Promise<number>=>{
      const newCredential:ICredential = {
         id,
-        username,
-        password,
+        username:username,
+        password:password,
      }
+     
      credentials.push(newCredential);
      id++
      return newCredential.id;

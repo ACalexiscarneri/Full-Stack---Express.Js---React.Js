@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
 import IUser from "../interfaces/IUser"
 import {createUserService, getUsersService, getUserByIdService} from "../services/userService";
+import {User} from "../entities/User"
 
 const getAllUser = async (req:Request, res:Response)=>{
-    const users:IUser[]= await getUsersService()
+    const users:User[]= await getUsersService()
     res.status(201).json(users);
   
 }
@@ -16,7 +17,7 @@ const getUserById = async(req:Request, res:Response)=>{
 
 const register = async(req:Request,res:Response)=>{
     const{ name,email,birthdate,nDni,username,password} = req.body;
-    const newUser:IUser = await createUserService({ name,email,birthdate,nDni,username,password})
+    const newUser:User = await createUserService({ name,email,birthdate,nDni,username,password})
     res.status(201).json(newUser);
 }
 

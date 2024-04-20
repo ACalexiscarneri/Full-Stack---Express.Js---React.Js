@@ -1,3 +1,11 @@
+import { cancel } from "../controllers/shiftsController";
+
+enum status{
+  ACTIVO = "active",
+  CANCELADO = "cancel"
+}
+
+
 interface shiftDto{
         date:Date,
         time:Date,
@@ -5,9 +13,7 @@ interface shiftDto{
         userId:number,
 }
 
-enum status{
-  ACTIVO,
-  CANCELADO,
-}
+
+
 
 export {shiftDto, status}

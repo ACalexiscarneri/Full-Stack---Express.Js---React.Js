@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import {getShiftsService,getShiftByIdService,createShiftService,cancelShiftService} from "../services/shiftService"
 import IShift from "../interfaces/IShift"
+import { shiftDto } from "../Dto/shiftDto"
 
 const getAllShifts = async (req:Request , res:Response)=>{
     const shifts:IShift[]= await getShiftsService()
@@ -22,7 +23,7 @@ const schedule = async (req:Request, res:Response)=>{
 
 const cancel = async (req:Request, res:Response)=>{
     const {id} = req.body;
-    const shift = await cancelShiftService(id)
+    const shift:shiftDto | undefined = await cancelShiftService(id)
     res.status(201).json(shift);
 }
 

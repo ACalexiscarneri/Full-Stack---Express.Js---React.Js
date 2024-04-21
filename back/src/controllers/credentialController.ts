@@ -8,6 +8,7 @@ const createCredentialsController = async (req:Request, res:Response) => {
     try {
         const newCredentialId:number = await createCredentialsService(username, password);
         res.status(200).json({ id: newCredentialId, message: "Credential created successfully." });
+        
     } catch (error) {
         res.status(500).json({ message: "Error creating credential." });
     }

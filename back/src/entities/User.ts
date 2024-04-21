@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Cred } from "./Credential"
 
 
 
@@ -23,7 +24,9 @@ export class User {
     @Column("integer")
     nDni: number
 
-    @Column()
-    credentialsId: number
+    @OneToOne(()=> Cred)
+    @JoinColumn()
+    Cred : Cred
+
 }
 

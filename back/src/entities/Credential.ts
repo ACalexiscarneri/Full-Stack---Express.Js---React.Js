@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity({
-    name:"credential"
+    name:"credentials"
 })
 export class Cred{
     @PrimaryGeneratedColumn()
@@ -17,4 +17,7 @@ export class Cred{
         length:20
     })
     password:string
+
+    
+    
 }

@@ -12,7 +12,12 @@ let id:number = 1;
 
 const createUserService = async(userdata:userDto):Promise<User>=>{
    const newUser:User = await AppDataSource.getRepository(User).create(userdata);
+   
+   const creds = await createCredentialsService(userdata.username , userdata.password);
+   newUser.cred = creds;
+   creds.user = newUser;
    const result = await AppDataSource.getRepository(User).save(newUser);
+   
    return newUser;
 }
 
@@ -21,8 +26,8 @@ const getUsersService = async():Promise<User[]>=>{
   return users;
 }
 
-const getUserByIdService = async(id:number):Promise<IUser | undefined>=>{
-   const usersId = users.find((user:IUser)=>user.id === id)
+const getUserByIdService = async(id:number):Promise<User | null>=>{
+   const usersId = await AppDataSource.getRepository(User).findOneBy({id})
       return usersId;
 }
 

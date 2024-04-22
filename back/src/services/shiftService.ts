@@ -1,5 +1,7 @@
-import {shiftDto,status} from "../Dto/shiftDto";
+import {shiftDto} from "../Dto/shiftDto";
 import IShift from "../interfaces/IShift";
+import status from "../entities/shift";
+
 
 const shifts:IShift[] = [];
 

@@ -1,5 +1,6 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn,ManyToOne} from "typeorm"
 import { Cred } from "./Credential"
+import { Shift } from "./shift"
 
 
 
@@ -18,15 +19,18 @@ export class User {
     @Column()
     email: string
 
-    @Column()
+    @Column("date")
     birthdate: Date
 
     @Column("integer")
     nDni: number
 
-    @OneToOne(()=> Cred)
+    @OneToOne(()=> Cred , (cred) => cred.user)
     @JoinColumn()
-    Cred : Cred
+    cred : Cred;
+
+    @ManyToOne(()=> Shift , (shift)=> shift.user)
+    shifts : Shift[];
 
 }
 

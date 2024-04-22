@@ -7,24 +7,21 @@ const credentials:ICredential[] = [];
 
 let id:number = 1;
 
-const createCredentialsService = async (username:string,password:string):Promise<number>=>{
+const createCredentialsService = async (username:string,password:string):Promise<Cred>=>{
      const newCredential:Cred = await AppDataSource.getRepository(Cred).create({username,password});
      const result = AppDataSource.getRepository(Cred).save(newCredential);
 
-     const user = await AppDataSource.getRepository(User).findOneBy({
-      
-     })
-
-     return newCredential.id;
+     return newCredential;
 }
 
 const checkUserCredentials = async (username:string,password:string):Promise<number | null>=>{
-   const foundUser:Cred | undefined = credentials.find((user)=>{
-       user.username === username
-   });
-  if(foundUser){
-    if(foundUser.password === password){
-      return foundUser.id;
+   const foundUserCreds: Cred | null = await AppDataSource.getRepository(Cred).findOne({
+    where:{username}
+   })
+    
+  if(foundUserCreds){
+    if(foundUserCreds.password === password){
+      return foundUserCreds.user.id;
     }
   }
   return null;   

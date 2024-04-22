@@ -8,16 +8,24 @@ export class Shift{
     @PrimaryGeneratedColumn()
     id:number
 
-    @Column()
+    @Column("date")
     date:Date
 
-    @Column()
+    @Column("date")
     time: Date
 
     @Column()
-    status:boolean
+    status:status
 
     @ManyToOne(()=> User , (user)=> user.id)
     user : User
     
 }
+
+
+enum status{
+    ACTIVO = "active",
+    CANCELADO = "cancel"
+  }
+
+  export default status

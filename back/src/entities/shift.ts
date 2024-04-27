@@ -17,7 +17,7 @@ export class Shift{
     @Column()
     status:status
 
-    @ManyToOne(()=> User , (user)=> user.id)
+    @ManyToOne(()=> User , (user)=> user.shifts)
     user : User
     
 }

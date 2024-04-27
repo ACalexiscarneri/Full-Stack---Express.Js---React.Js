@@ -1,33 +1,42 @@
 import IUser from "../interfaces/IUser"
-import userDto from "../Dto/userDto"
+import {userDto, userRespuestaDto} from "../Dto/userDto"
 import { createCredentialsService } from "./credentialServices";
 import { AppDataSource } from "../config/data-source";
 import { User } from "../entities/User";
+import userRepository from "../repositories/userRepository";
 
 
-const users:IUser[] = [];
 
-let id:number = 1;
-
-
-const createUserService = async(userdata:userDto):Promise<User>=>{
-   const newUser:User = await AppDataSource.getRepository(User).create(userdata);
-   
+const createUserService = async(userdata:userDto):Promise<userRespuestaDto>=>{
+    
    const creds = await createCredentialsService(userdata.username , userdata.password);
+   const newUser:User = await userRepository.create(userdata);
    newUser.cred = creds;
    creds.user = newUser;
-   const result = await AppDataSource.getRepository(User).save(newUser);
    
-   return newUser;
+   await userRepository.save(newUser);
+
+   return {
+      id:newUser.id,
+      name:newUser.name,
+      email:newUser.email,
+      birthdate: newUser.birthdate,
+      nDni: newUser.nDni,
+      credentialId: newUser.cred.id
+   };
 }
 
 const getUsersService = async():Promise<User[]>=>{
-   const users = await AppDataSource.getRepository(User).find();
+   const users = await userRepository.find({
+      relations:{
+         shifts:true
+      }
+   });
   return users;
 }
 
 const getUserByIdService = async(id:number):Promise<User | null>=>{
-   const usersId = await AppDataSource.getRepository(User).findOneBy({id})
+   const usersId = await userRepository.findOneBy({id})
       return usersId;
 }
 

@@ -3,7 +3,6 @@ import { Cred } from "./Credential"
 import { Shift } from "./shift"
 
 
-
 @Entity({
     name:"users"
 })
@@ -25,7 +24,7 @@ export class User {
     @Column("integer")
     nDni: number
 
-    @OneToOne(()=> Cred , (cred) => cred.user)
+   @OneToOne(()=> Cred , (cred) => cred.user)
     @JoinColumn()
     cred : Cred;
 

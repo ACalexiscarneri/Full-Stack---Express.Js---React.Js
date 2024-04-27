@@ -1,12 +1,13 @@
 import {Request, Response} from "express"
 import {createCredentialsService , checkUserCredentials} from "../services/credentialServices"
 import ICredential from "../interfaces/ICredential";
+import {Cred} from "../entities/Credential"
 
 const createCredentialsController = async (req:Request, res:Response) => {
     const { username, password } = req.body;
 
     try {
-        const newCredentialId:number = await createCredentialsService(username, password);
+        const newCredentialId:Cred = await createCredentialsService(username, password);
         res.status(200).json({ id: newCredentialId, message: "Credential created successfully." });
         
     } catch (error) {
@@ -15,7 +16,7 @@ const createCredentialsController = async (req:Request, res:Response) => {
 };
 
 const checkUser = async (req:Request, res:Response)=>{
-    const { username, password } = req.body;
+    const { username, password} = req.body;
     const credsId = await checkUserCredentials(username,password);
     res.status(200).json(credsId);
 }

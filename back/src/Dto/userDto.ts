@@ -1,3 +1,5 @@
+
+
 interface userDto{
     name:string,
     email:string,
@@ -7,4 +9,13 @@ interface userDto{
     password:string
 }
 
-export default userDto
+interface userRespuestaDto{
+    id:number,
+    name:string,
+    email:string,
+    birthdate: Date,
+    nDni: number,
+    credentialId: number
+}
+
+export  {userDto , userRespuestaDto}

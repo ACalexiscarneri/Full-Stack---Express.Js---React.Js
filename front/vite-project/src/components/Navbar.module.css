@@ -1,0 +1,28 @@
+.navtext{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.Container{
+    background-color: lightcyan;
+    margin: 20px;
+    border-radius: 15px;
+    height: 90%;
+}
+
+.navContainer{
+  border: solid 1px black;
+  border-radius: 15px;
+}
+
+.navList{
+    background-color: bisque;
+   
+    
+}
+
+.navItems{
+    list-style: none;
+    display: flex;
+}

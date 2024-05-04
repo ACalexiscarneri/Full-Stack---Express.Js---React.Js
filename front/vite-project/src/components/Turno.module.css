@@ -1,0 +1,11 @@
+.container{
+    border: solid 1px;
+    border-radius: 15px;
+    margin:20px
+}
+
+
+.date{
+    font-family: Arial, Helvetica, sans-serif;
+}
+

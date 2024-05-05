@@ -4,11 +4,12 @@ import Turno from "../components/Turno";
 import misTurnos from "../helpers/misturnos"
 
 
-//const [turno, setTurno] = useState(misTurnos)
 
 
 const Misturnos = ()=>{
 
+    const [turnos, setTurnos] = useState(misTurnos)
+    
         return(
             <>
             <h1>Esta es la pagina de Mis Turnos</h1>

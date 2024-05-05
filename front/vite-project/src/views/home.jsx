@@ -13,6 +13,10 @@ const Home = () =>{
 
   }
 
+  const handlerOnClose = ()=>{
+    setLogin(false);
+  }
+
 
   const [mostrarRegister, setMostrarRegister] = useState(false);
    
@@ -24,7 +28,7 @@ const Home = () =>{
         <>
         <div>
           {!login ? (
-            <button onClick={handlerLoginClick}>Log In</button>)
+            <button onClick={handlerLoginClick }>Log In</button>)
             : (<Login/>
           )}
         </div>
@@ -33,6 +37,7 @@ const Home = () =>{
             <button onClick={handlerRegisterClick}>Register</button>
           ) : (<Register/>)}
         </div>
+        {login && <Login handlerOnClose={handlerOnClose}/>}
       
         </>
     )

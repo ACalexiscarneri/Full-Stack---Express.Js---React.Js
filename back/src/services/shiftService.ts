@@ -45,6 +45,7 @@ const cancelShiftService = async(id:number)=>{
     const shiftId: Shift | null = await getShiftByIdService(id)
     if(shiftId){
         shiftId.status = status.CANCELADO;
+        await shiftRepository.save(shiftId)
         return shiftId;
     } 
     return null;

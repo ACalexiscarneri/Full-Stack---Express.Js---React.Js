@@ -1,8 +1,8 @@
 
 
 enum status{
-  ACTIVO = "active",
-  CANCELADO = "cancel"
+  ACTIVO = "Active",
+  CANCELADO = "Cancel"
 }
 
 

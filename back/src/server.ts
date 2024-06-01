@@ -1,6 +1,7 @@
 import  express from "express";
 import router from "./routes/indexRouter";
-import cors from "express";
+import cors from "cors";
+
 import morgan from "express"
 const app = express();
 

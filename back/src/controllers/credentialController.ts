@@ -2,6 +2,7 @@ import {Request, Response} from "express"
 import {createCredentialsService , checkUserCredentials} from "../services/credentialServices"
 import ICredential from "../interfaces/ICredential";
 import {Cred} from "../entities/Credential"
+import { userAuthedResponseDto } from "../Dto/userDto";
 
 const createCredentialsController = async (req:Request, res:Response) => {
     const { username, password } = req.body;

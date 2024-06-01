@@ -1,4 +1,13 @@
-
+interface userAuthedResponseDto{
+    login:boolean,
+    user:{
+        id:number,
+        name:string,
+        email:string,
+        birthdate: Date,
+        nDni: number, 
+    }
+}
 
 interface userDto{
     name:string,
@@ -18,4 +27,4 @@ interface userRespuestaDto{
     credentialId: number
 }
 
-export  {userDto , userRespuestaDto}
+export  {userDto , userRespuestaDto,userAuthedResponseDto}

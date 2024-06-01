@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn,ManyToOne} from "typeorm"
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn,ManyToOne, OneToMany} from "typeorm"
 import { Cred } from "./Credential"
 import { Shift } from "./shift"
 
@@ -25,10 +25,10 @@ export class User {
     nDni: number
 
    @OneToOne(()=> Cred , (cred) => cred.user)
-    @JoinColumn()
+   @JoinColumn()
     cred : Cred;
 
-    @ManyToOne(()=> Shift , (shift)=> shift.user)
+    @OneToMany(()=> Shift , (shift)=> shift.user)
     shifts : Shift[];
 
 }

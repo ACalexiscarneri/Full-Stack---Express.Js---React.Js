@@ -4,6 +4,10 @@ import { createCredentialsService } from "./credentialServices";
 import { AppDataSource } from "../config/data-source";
 import { User } from "../entities/User";
 import userRepository from "../repositories/userRepository";
+import {checkUserCredentials} from "./credentialServices"
+import {userAuthedResponseDto} from "../Dto/userDto"
+import credRepository from "../repositories/credentialRepository";
+import { promise } from "zod";
 
 
 
@@ -11,10 +15,12 @@ const createUserService = async(userdata:userDto):Promise<userRespuestaDto>=>{
     
    const creds = await createCredentialsService(userdata.username , userdata.password);
    const newUser:User = await userRepository.create(userdata);
+   
    newUser.cred = creds;
    creds.user = newUser;
    
    await userRepository.save(newUser);
+   await credRepository.save(creds);
 
    return {
       id:newUser.id,
@@ -27,17 +33,34 @@ const createUserService = async(userdata:userDto):Promise<userRespuestaDto>=>{
 }
 
 const getUsersService = async():Promise<User[]>=>{
-   const users = await userRepository.find({
-      relations:{
-         shifts:true
-      }
+   const users:User[] = await userRepository.find({
+      
    });
+
   return users;
 }
 
 const getUserByIdService = async(id:number):Promise<User | null>=>{
-   const usersId = await userRepository.findOneBy({id})
+   const usersId = await userRepository.findOne({
+      where:{id},
+      relations:["shifts"]
+
+   });
+    
       return usersId;
+
 }
 
-export  {createUserService , getUsersService, getUserByIdService}
+
+ const loginUserService = async(username:string,password:string):Promise<userAuthedResponseDto | null> => {
+   const authedUser:userAuthedResponseDto | null = await checkUserCredentials(username,password)
+   
+   if(authedUser){
+      return authedUser;
+   }
+   return null;
+   
+ }
+
+
+export  {createUserService , getUsersService, getUserByIdService,loginUserService}

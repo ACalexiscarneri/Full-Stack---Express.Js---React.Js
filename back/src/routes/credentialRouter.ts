@@ -6,6 +6,6 @@ const credentialRouter = Router();
 // ruta para crear nuevas credenciales
 credentialRouter.post("/create", createCredentialsController)
 
-credentialRouter.get("/:id" , checkUser)
+credentialRouter.get("/:creds" , checkUser)
 
 export default credentialRouter;

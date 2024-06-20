@@ -1,24 +1,40 @@
 
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Turno from "../components/Turno";
-import misTurnos from "../helpers/misturnos"
-
-
+import axios from "axios";
+import { UserContext} from "../components/protectedRoute"
 
 
 const Misturnos = ()=>{
 
-    const [turnos, setTurnos] = useState(misTurnos)
+    const {user} = useContext(UserContext);
+
+    const [turnos, setTurnos] = useState([])
+
+    useEffect(()=>{
+        try{
+            axios.get("http://localhost:3000/shifts")
+            .then((res) => setTurnos(res.data));
+
+        }catch{
+
+        }
+       
+    },[])
+
+
+
     
         return(
             <>
             <h1>Esta es la pagina de Mis Turnos</h1>
                     <>
                     {
-                    misTurnos.map((turno) => {
-                    const {date,time,status} = turno
+                    turnos.map((turno) => {
+                    const {id,date,time,status} = turno
                     return(
                         <Turno
+                        key={id}
                         date={date}
                         time={time}
                         status={status}

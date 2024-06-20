@@ -27,7 +27,9 @@
     list-style: none;
     display: flex;
     margin-left: 200px;
-    background-color: aqua;
-    
 }
 
+.logout{
+    width: 100px;
+    height: 30px;
+}

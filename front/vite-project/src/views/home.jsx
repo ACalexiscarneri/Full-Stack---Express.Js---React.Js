@@ -1,20 +1,20 @@
 import { useState } from "react";
 import Login from "../components/login"
 import Register from "../components/register";
-
+import Button from "../components/Button";
 
 
 const Home = () =>{
 
-  const [ login , setLogin] = useState(false);
+  const [ mostrarlogin , setMostrarLogin] = useState(false);
   
   const handlerLoginClick = ()=>{
-    setLogin(true);
+    setMostrarLogin(true);
 
   }
 
   const handlerOnClose = ()=>{
-    setLogin(false);
+    setMostrarLogin(false);
   }
 
 
@@ -23,22 +23,27 @@ const Home = () =>{
   const handlerRegisterClick = () =>{
       setMostrarRegister(true);
   }
+
+  const handlerRegisterClose = ()=>{
+     setMostrarRegister(false);
+  }
+
   
     return (
-        <>
+      <>
+      
         <div>
-          {!login ? (
-            <button onClick={handlerLoginClick }>Log In</button>)
-            : (<Login/>
+          
+          {!mostrarlogin ? (
+            <Button title="Login" onClick={handlerLoginClick}/>)
+            : (<Login  handlerOnClose={handlerOnClose}/>
           )}
         </div>
         <div>
           {!mostrarRegister ? (
-            <button onClick={handlerRegisterClick}>Register</button>
-          ) : (<Register/>)}
+            <Button title="Register" onClick={handlerRegisterClick} />
+          ) : (<Register handlerRegisterClose={handlerRegisterClose}/>)}
         </div>
-        {login && <Login handlerOnClose={handlerOnClose}/>}
-      
         </>
     )
 }

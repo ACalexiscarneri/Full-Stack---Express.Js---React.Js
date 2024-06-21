@@ -5,10 +5,9 @@ import logout from "../assets/logout.svg"
 
 const Navbar = ()=>{
 
-    
-
     return (
         <>
+        
         <div className={styles.Container}>
         <nav className={styles.navContainer}>
             <ul className={styles.navList}>

@@ -10,6 +10,8 @@ const Login = ({handlerOnClose})=>{
      username:"",
      password:""
   })
+
+  const [error ,setError] = useState(null)
   
   const handlerOnChange = (event) =>{
    const {name , value} = event.target;
@@ -34,9 +36,8 @@ const handlerOnSubmit = async (event)=>{
  setUser(data.user)
  navigate("/turnos")
  
- 
   }catch(error){
-  console.log(error.response.data)
+    setError(error.response.data)
   }
 
 }
@@ -68,6 +69,9 @@ const handlerOnSubmit = async (event)=>{
                placeholder="password"
                onChange={handlerOnChange}
                ></input>
+            </div>
+            <div>
+            {error && <div style={{ color: 'red' }}>{error}</div>}
             </div>
 
             <button className={styles.loginButton}>LOGIN</button>

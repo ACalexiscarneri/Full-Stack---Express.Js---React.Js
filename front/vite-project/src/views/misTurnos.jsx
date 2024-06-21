@@ -5,7 +5,7 @@ import axios from "axios";
 import { UserContext} from "../components/protectedRoute"
 
 
-const Misturnos = ()=>{
+const Misturnos = ({children})=>{
 
     const {user} = useContext(UserContext);
 
@@ -27,17 +27,19 @@ const Misturnos = ()=>{
     
         return(
             <>
-            <h1>Esta es la pagina de Mis Turnos</h1>
+            {children}
                     <>
                     {
                     turnos.map((turno) => {
-                    const {id,date,time,status} = turno
+                    const {id,date,time,status,user} = turno
                     return(
                         <Turno
+                        name={user.name}
                         key={id}
                         date={date}
                         time={time}
                         status={status}
+                        id={id}
                         />
                     )
                     }) 

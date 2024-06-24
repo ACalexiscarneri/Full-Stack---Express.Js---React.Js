@@ -1,6 +1,7 @@
 
 import { useContext, useEffect, useState } from "react";
 import Turno from "../components/Turno";
+import TablaTurnos from "../components/TablaTurnos";
 import axios from "axios";
 import { UserContext} from "../components/protectedRoute"
 
@@ -13,14 +14,16 @@ const Misturnos = ({children})=>{
 
     useEffect(()=>{
         try{
-            axios.get("http://localhost:3000/shifts")
-            .then((res) => setTurnos(res.data));
+            if(user){
+                 axios.get(`http://localhost:3000/users/${user.id}`)
+                .then((res) => setTurnos(res.data.shifts));
 
-        }catch{
-
+            }
+        }catch(error){
+           console.log(error)
         }
        
-    },[])
+    },[user])
 
 
 
@@ -29,18 +32,19 @@ const Misturnos = ({children})=>{
             <>
             {children}
                     <>
+                    <TablaTurnos/>
                     {
                     turnos.map((turno) => {
-                    const {id,date,time,status,user} = turno
+                    const {id,date,time,status} = turno
                     return(
-                        <Turno
-                        name={user.name}
-                        key={id}
-                        date={date}
-                        time={time}
-                        status={status}
-                        id={id}
-                        />
+                            <Turno
+                            
+                            key={id}
+                            date={date}
+                            time={time}
+                            status={status}
+                            id={id}
+                            />
                     )
                     }) 
                 }

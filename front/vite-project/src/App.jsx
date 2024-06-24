@@ -19,6 +19,8 @@ function App() {
     <Route path="/turnos" element={<Misturnos>
       <Navbar/>
     </Misturnos>}/>
+      <Route path='/inicio' element={<h1>inicio</h1>}/>
+      <Route path='/about' element={<h1>about</h1>}/>
    </Routes>
 </UserProvider>
 

@@ -34,6 +34,7 @@ const handlerOnSubmit = async (event)=>{
   try{
  const {data} = await axios.post("http://localhost:3000/users/login", userdata)
  setUser(data.user)
+ localStorage.setItem('user', JSON.stringify(data.user));
  navigate("/turnos")
  
   }catch(error){

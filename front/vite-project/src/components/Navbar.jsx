@@ -12,7 +12,7 @@ const Navbar = ()=>{
         <nav className={styles.navContainer}>
             <ul className={styles.navList}>
                 <li className={styles.navItems}>
-                    <NavLink to="/">
+                    <NavLink to="/inicio">
                     <span className={styles.navtext}>
                      HOME
                     </span>

@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import styles from "./register.module.css";
-import validate from "../helpers/validate";
+
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
-import  {UserContext}  from "./protectedRoute";
+import  {UserContext}  from "./UserProvider";
 
 const Register = ({handlerRegisterClose})=>{
 
@@ -24,7 +24,7 @@ const Register = ({handlerRegisterClose})=>{
         ...registerData,
         [name]:value
     });
-    //setErrors(validate(registerData))
+    
  }
 
  const {setUser} = useContext(UserContext);
@@ -40,9 +40,9 @@ try{
    navigate("/turnos")
    alert(`bienvenido ${data.name}`)
 }catch(error) {
-    console.log(error.response.data.error[0])
-   setErrors()
-   
+    console.log(error.response.data.error)
+    setErrors(error.response.data.error)
+   console.log(errors)
 }
  }
 
@@ -53,7 +53,7 @@ try{
             <form onSubmit={handlerOnsubmit}>
                 <div className={styles.divName}>
                     <label htmlFor="name">Name</label>
-                    <input 
+                    <input className=" m-2 rounded-md"
                     type="text" 
                     value={registerData.name} 
                     id="name" 
@@ -61,13 +61,13 @@ try{
                     onChange={handlerOnChange}>
                     </input>
                 </div>
-                    {errors && <div style={{ color: 'red' }}>{errors}</div>}
                 
                 
                 <div className={styles.divEmail}>
                     <label htmlFor="email">Email</label>
                     
-                    <input type="email" 
+                    <input className=" m-2 rounded-md" 
+                    type="email" 
                     onChange={handlerOnChange}  
                     value={registerData.email} 
                     id="email" 
@@ -77,7 +77,8 @@ try{
 
                 <div className={styles.divDate}>
                     <label htmlFor="birthdate">Birthdate</label>
-                    <input type="date" 
+                    <input className=" m-2 rounded-md"
+                    type="date" 
                     onChange={handlerOnChange}  
                     value={registerData.date} 
                     id="birthdate" 
@@ -87,7 +88,8 @@ try{
 
                 <div className={styles.divDni}>
                     <label htmlFor="nDni">Dni:</label>
-                    <input type="number" 
+                    <input className=" m-2 rounded-md"
+                    type="number" 
                     onChange={handlerOnChange}  
                     value={registerData.nDni} 
                     id="nDni" 
@@ -97,7 +99,8 @@ try{
 
                 <div className={styles.divUsername}>
                     <label htmlFor="username">Username</label>
-                    <input type="text" 
+                    <input className=" m-2 rounded-md"
+                    type="text" 
                     onChange={handlerOnChange}  
                     value={registerData.username} 
                     id="username" 
@@ -107,13 +110,18 @@ try{
 
                 <div className={styles.divPassword}>
                     <label htmlFor="password">Password</label>
-                    <input type="password" 
+                    <input className=" m-2 rounded-lg"
+                    type="password" 
                     onChange={handlerOnChange}  
                     value={registerData.password} 
                     id="password" 
                     name="password">
                     </input>
                 </div>
+                    {errors.map((error , i) => (
+                     <div className="text-red-600">
+                        {error}
+                    </div>))}
                 
                 <button type="submit" className={styles.registerButton}>REGISTER</button>
             </form>

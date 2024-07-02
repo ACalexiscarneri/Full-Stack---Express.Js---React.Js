@@ -1,18 +1,21 @@
-import { NavLink, Router } from "react-router-dom";
+import { NavLink, Router, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logout from "../assets/logout.svg"
 
 
 const Navbar = ()=>{
 
+    const navigate = useNavigate();
+
     return (
         <>
         
-        <div className={styles.Container}>
-        <nav className={styles.navContainer}>
-            <ul className={styles.navList}>
+        <div className="">
+        <nav className="bg-slate-400 py-4 shadow">
+            <ul className="flex justify-between">
                 <li className={styles.navItems}>
-                    <NavLink to="/inicio">
+                    <NavLink  className={({isActive}) => (isActive ? "active" : "")} to="/inicio">
+                    
                     <span className={styles.navtext}>
                      HOME
                     </span>
@@ -40,8 +43,9 @@ const Navbar = ()=>{
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink>
+                    <NavLink >
                     <img src={logout} className={styles.logout}></img>
+
                     </NavLink>
                 </li>
             </ul>

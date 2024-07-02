@@ -1,7 +1,7 @@
 
 
 
-const Turno = ({date,time,status,name,id})=>{
+const Turno = ({date,time,status,id})=>{
  
     return( 
       <section className="text-gray-600 body-font">
@@ -11,12 +11,9 @@ const Turno = ({date,time,status,name,id})=>{
         <tbody>
           <tr>
           <td className="px-4 py-3">{id}</td>
-            <td className="px-4 py-3">{name}</td>
             <td className="px-4 py-3">{date}</td>
             <td className="px-4 py-3">{time}</td>
-            <td className="px-4 py-3 text-lg text-gray-900">{status}</td>
-            <td className="w-10 text-center">
-            </td>
+            <td className="px-4 py-3 text-lg text-green-700">{status}</td>
           </tr>
         </tbody>
       </table>

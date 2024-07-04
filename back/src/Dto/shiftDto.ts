@@ -7,8 +7,8 @@ enum status{
 
 
 interface shiftDto{
-        date:Date,
-        time:Date,
+        date:string
+        time:string,
         status:status,
         userId:number,
 }

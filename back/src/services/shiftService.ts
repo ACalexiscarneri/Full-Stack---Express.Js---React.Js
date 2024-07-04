@@ -10,7 +10,6 @@ import shiftRepository from "../repositories/shiftRepository";
 const getShiftsService = async():Promise<Shift[]>=>{
     const shifts:Shift[] = await shiftRepository.find({
         relations:{user:true
-            
         }
     });
 
@@ -19,9 +18,9 @@ const getShiftsService = async():Promise<Shift[]>=>{
 
 const getShiftByIdService = async(id:number):Promise<Shift | null>=>{
    const shiftId = await shiftRepository.findOneBy({id})
+   if(shiftId) return shiftId
+   return null; 
    
-   return shiftId;
-
 }
 
 
@@ -34,7 +33,6 @@ const createShiftService = async(appdata:shiftDto):Promise<Shift | null>=>{
              status: status.ACTIVO,
              user: foundUser,
         })
-        
         await shiftRepository.save(newShift);
         return newShift;
     }

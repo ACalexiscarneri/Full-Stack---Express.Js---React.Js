@@ -10,7 +10,9 @@ const registerSchema = z.object({
   }).email({
     message: "Email invalido"
   }),
-  birthdate: z.string().datetime(),
+  birthdate: z.string({
+    required_error:"birthdate es requerido"
+  }),
   nDni: z.string({
     required_error: "DNI es requerido"
   }).min(8,{
@@ -39,14 +41,28 @@ const registerSchema = z.object({
 
 
 const loginSchema = z.object({
-  username: z.string().min(3,{
-    message: "Must be 3 or more characters long"
+  username: z.string({
+    required_error:"el username es requerido"
   }),
-  password: z.string().min(6,{
-    message:"The password must be at least 6 characters"
+  password: z.string({
+    required_error:"el password es requerido"
   })
 })
 
+const startHour = 9;  
+const endHour = 17;
 
 
-export {loginSchema,registerSchema}
+const shiftsSchema = z.object({
+  date: z.string().refine((dateString) => {
+    const date = new Date(dateString);
+    const now = new Date();
+    return date > now;
+  },{
+    message: "La fecha debe ser futura."
+  }),  
+  
+})
+
+
+export {loginSchema,registerSchema , shiftsSchema} 

@@ -51,12 +51,12 @@ const register = async(req:Request,res:Response)=>{
 const login = async (req:Request, res:Response)=>{
     const {username,password} = req.body;
     if(!username || !password){
-    return res.status(400).send("missing required fields")
+    return res.status(400).send("faltan campos obligatorios")
     }
 try{
     const userAuthed:userAuthedResponseDto | null  = await loginUserService(username,password)
     if(userAuthed) return res.status(201).json(userAuthed)
-    return res.status(400).send("fallo al logerse")
+    return res.status(400).send("username o password incorrecto")
 
 }catch(error){
      console.error("no esta registrado")

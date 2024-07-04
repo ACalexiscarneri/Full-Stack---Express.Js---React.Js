@@ -1,5 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
+import { TimeLike } from "fs";
 
 @Entity({
     name:"shifts"
@@ -9,10 +10,10 @@ export class Shift{
     id:number
 
     @Column("date")
-    date:Date
+    date:string
 
-    @Column("date")
-    time: Date
+    @Column({ type: 'time', nullable: true })
+    time: string
 
     @Column()
     status:status

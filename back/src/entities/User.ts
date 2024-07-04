@@ -19,7 +19,7 @@ export class User {
     email: string
 
     @Column("date")
-    birthdate: Date
+    birthdate: string
 
     @Column("integer")
     nDni: number

@@ -20,7 +20,7 @@ function App() {
     <>
   {location.pathname ===  "/"  ? null : <Navbar/>}
 
-<UserProvider>
+
    <Routes>
     <Route path='/' element={<Home/>}/>
     <Route element={<ProtecRoute/>}>
@@ -31,7 +31,7 @@ function App() {
       <Route path='*' element={<h1>Error 404 , page no found</h1>}/>
     </Route>
    </Routes>
-</UserProvider>
+
     </>
   
   )

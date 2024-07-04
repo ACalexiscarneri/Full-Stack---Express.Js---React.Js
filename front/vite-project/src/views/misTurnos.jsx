@@ -39,7 +39,7 @@ const Misturnos = ()=>{
   }
 
   const CancelarTurno = (id) =>{
-    setTurnos([...turnos])
+    setTurnos([...turnos, id])
   }
 
 

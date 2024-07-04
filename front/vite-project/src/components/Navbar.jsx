@@ -1,11 +1,11 @@
-import { NavLink, Router, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styles from "./Navbar.module.css";
 import logout from "../assets/logout.svg"
+import LogoutButton from "./logout";
 
 
 const Navbar = ()=>{
 
-    const navigate = useNavigate();
 
     return (
         <>
@@ -43,10 +43,7 @@ const Navbar = ()=>{
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink >
-                    <img src={logout} className={styles.logout}></img>
-
-                    </NavLink>
+                    <LogoutButton/>
                 </li>
             </ul>
         </nav>

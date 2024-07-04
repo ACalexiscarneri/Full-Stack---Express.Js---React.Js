@@ -10,6 +10,8 @@ const NuevoTurno = ({handlerOnClose , agregarTurno}) =>{
         time:""
     })
 
+    const [errors , setErrors] = useState([])
+
     const handlerOnChange = (event)=>{
    const { name , value} = event.target
 
@@ -33,7 +35,8 @@ const NuevoTurno = ({handlerOnClose , agregarTurno}) =>{
      
      
       }catch(error){
-        console.log(error.config)
+        setErrors(error.response.data.error)
+        console.log(error)
       }
     }
 
@@ -52,6 +55,10 @@ const NuevoTurno = ({handlerOnClose , agregarTurno}) =>{
                     name="date" 
                     onChange={handlerOnChange}>
                     </input>
+                    {errors.map((error, i ) => (
+                     <div className="text-red-600" key={i}>
+                        {error}
+                    </div>))}
                 </div>
                 
                 <div className="mt-2">

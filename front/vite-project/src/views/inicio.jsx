@@ -1,13 +1,17 @@
-
-
+import Gallery from "../components/Gallery";
+import { useSelector, useDispatch } from "react-redux";
 
 
 const Inicio = () => {
 
 
+
+
+
     return(
         <>
-        <h1>pagina de incio</h1>
+        
+        <Gallery/>
         </>
     )
 }

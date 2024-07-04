@@ -3,7 +3,8 @@ import styles from "./Login.module.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import  {UserContext}  from "./UserProvider";
-
+import { useDispatch } from "react-redux";
+import { login } from "../redux/reduce";
 
 const Login = ({handlerOnClose})=>{
 
@@ -23,9 +24,9 @@ const Login = ({handlerOnClose})=>{
    });
   
   }
-
-  const {setUser, user} = useContext(UserContext);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
 
 // Peticion post.
 const handlerOnSubmit = async (event)=>{
@@ -34,10 +35,10 @@ const handlerOnSubmit = async (event)=>{
   
   try{
  const {data} = await axios.post("http://localhost:3000/users/login", userdata)
- setUser(data.user)
- navigate("/inicio")
- 
+ dispatch(login(data.user))
  localStorage.setItem('user', JSON.stringify(data.user));
+ console.log('User logged in:', data.user.name); 
+ navigate("/inicio")
  
   }catch(error){
     console.log(error)
@@ -45,6 +46,10 @@ const handlerOnSubmit = async (event)=>{
   }
 
 }
+
+
+
+
 
     return(
 <section className="fixed bg-black bg-opacity-50 p-6 inset-0 flex justify-center items-center">

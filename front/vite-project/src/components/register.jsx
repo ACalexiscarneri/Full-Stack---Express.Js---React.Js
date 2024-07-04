@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import styles from "./register.module.css";
-
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import  {UserContext}  from "./UserProvider";
+import { useDispatch } from "react-redux";
+import { register } from "../redux/reduce";
 
 const Register = ({handlerRegisterClose})=>{
 
@@ -27,7 +28,8 @@ const Register = ({handlerRegisterClose})=>{
     
  }
 
- const {setUser} = useContext(UserContext);
+ //const {setUser} = useContext(UserContext);
+ const dispatch = useDispatch();
  const navigate = useNavigate();
 
 
@@ -36,11 +38,12 @@ const Register = ({handlerRegisterClose})=>{
 
 try{
    const {data} = await axios.post("http://localhost:3000/users/register", registerData,);
-   setUser(data)
-   navigate("/turnos")
+   dispatch(register(data.user))
+   localStorage.setItem('user', JSON.stringify(data.user));
+   navigate("/inicio")
    alert(`bienvenido ${data.name}`)
 }catch(error) {
-    console.log(error.response.data.error)
+    console.log(error)
     setErrors(error.response.data.error)
    console.log(errors)
 }

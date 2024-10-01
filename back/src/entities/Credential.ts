@@ -15,7 +15,8 @@ export class Cred{
     username:string
 
     @Column({
-        length:20
+        length:115,
+        nullable:false,
     })
     password:string
 

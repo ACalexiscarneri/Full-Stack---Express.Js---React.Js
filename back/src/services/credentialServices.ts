@@ -1,12 +1,14 @@
 import { userAuthedResponseDto } from "../Dto/userDto";
-import { AppDataSource } from "../config/data-source";
 import { Cred } from "../entities/Credential";
-import ICredential from "../interfaces/ICredential"
 import credRepository from "../repositories/credentialRepository";
-
+import * as bcryptjs from "bcryptjs"
 
 const createCredentialsService = async (username:string,password:string):Promise<Cred>=>{
-     const newCredential:Cred = await credRepository.create({username,password});
+
+  const hashedPassword = await bcryptjs.hash(password,10);
+   console.log(hashedPassword)
+     const newCredential:Cred = await credRepository.create({username,password:hashedPassword});
+  console.log(newCredential);
       await credRepository.save(newCredential);
 
      return newCredential;
@@ -18,6 +20,8 @@ const checkUserCredentials = async (username:string,password:string):Promise< us
     where:{username},
     relations:{user:true}
   })
+
+
 
   if(foundUserCreds){
     if(foundUserCreds.password === password){

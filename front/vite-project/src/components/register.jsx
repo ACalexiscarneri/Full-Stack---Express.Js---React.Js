@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import styles from "./register.module.css";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
 import  {UserContext}  from "./UserProvider";
@@ -49,88 +48,143 @@ try{
 }
  }
 
-    return(
-        <section className={styles.container}>
-            <div className={styles.modal}>
-            <button className={styles.closeButton} onClick={handlerRegisterClose}>X</button>
-            <form onSubmit={handlerOnsubmit}>
-                <div className={styles.divName}>
-                    <label htmlFor="name">Name</label>
-                    <input className=" m-2 rounded-md"
-                    type="text" 
-                    value={registerData.name} 
-                    id="name" 
-                    name="name" 
-                    onChange={handlerOnChange}>
-                    </input>
-                </div>
-                
-                
-                <div className={styles.divEmail}>
-                    <label htmlFor="email">Email</label>
-                    
-                    <input className=" m-2 rounded-md" 
-                    type="email" 
-                    onChange={handlerOnChange}  
-                    value={registerData.email} 
-                    id="email" 
-                    name="email">
-                    </input>  
-                </div>
+    return (
+  <section className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4 overflow-y-auto animate-fadeIn">
+    <div className="relative bg-white p-6 rounded-xl shadow-2xl w-96 max-h-[90vh] overflow-y-auto font-sans animate-zoomIn">
+      
+      {/* Botón de cerrar */}
+      <button
+        onClick={handlerRegisterClose}
+        className="absolute top-3 right-3 bg-slate-200 hover:bg-red-600 hover:text-white text-gray-700 font-bold py-1 px-2 rounded-md transition"
+      >
+        ✕
+      </button>
 
-                <div className={styles.divDate}>
-                    <label htmlFor="birthdate">Birthdate</label>
-                    <input className=" m-2 rounded-md"
-                    type="date" 
-                    onChange={handlerOnChange}  
-                    value={registerData.date} 
-                    id="birthdate" 
-                    name="birthdate">
-                    </input>
-                </div>
+      {/* Formulario */}
+      <form onSubmit={handlerOnsubmit} className="flex flex-col gap-4 mt-2">
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-2">
+          Crear cuenta
+        </h2>
 
-                <div className={styles.divDni}>
-                    <label htmlFor="nDni">Dni:</label>
-                    <input className=" m-2 rounded-md"
-                    type="number" 
-                    onChange={handlerOnChange}  
-                    value={registerData.nDni} 
-                    id="nDni" 
-                    name="nDni">
-                    </input>
-                </div>
+        {/* Name */}
+        <div className="flex flex-col">
+          <label htmlFor="name" className="text-gray-700 font-medium">
+            Name
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="text"
+            value={registerData.name}
+            id="name"
+            name="name"
+            placeholder="Tu nombre"
+            onChange={handlerOnChange}
+          />
+        </div>
 
-                <div className={styles.divUsername}>
-                    <label htmlFor="username">Username</label>
-                    <input className=" m-2 rounded-md"
-                    type="text" 
-                    onChange={handlerOnChange}  
-                    value={registerData.username} 
-                    id="username" 
-                    name="username">
-                    </input>
-                </div>
+        {/* Email */}
+        <div className="flex flex-col">
+          <label htmlFor="email" className="text-gray-700 font-medium">
+            Email
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="email"
+            value={registerData.email}
+            id="email"
+            name="email"
+            placeholder="tu@email.com"
+            onChange={handlerOnChange}
+          />
+        </div>
 
-                <div className={styles.divPassword}>
-                    <label htmlFor="password">Password</label>
-                    <input className=" m-2 rounded-lg"
-                    type="password" 
-                    onChange={handlerOnChange}  
-                    value={registerData.password} 
-                    id="password" 
-                    name="password">
-                    </input>
-                </div>
-                    {errors.map((error , i) => (
-                     <div className="text-red-600">
-                        {error}
-                    </div>))}
-                
-                <button type="submit" className={styles.registerButton}>REGISTER</button>
-            </form>
-            </div>
-        </section>
-    )
+        {/* Birthdate */}
+        <div className="flex flex-col">
+          <label htmlFor="birthdate" className="text-gray-700 font-medium">
+            Birthdate
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none text-gray-600"
+            type="date"
+            value={registerData.date}
+            id="birthdate"
+            name="birthdate"
+            onChange={handlerOnChange}
+          />
+        </div>
+
+        {/* DNI */}
+        <div className="flex flex-col">
+          <label htmlFor="nDni" className="text-gray-700 font-medium">
+            DNI
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="number"
+            value={registerData.nDni}
+            id="nDni"
+            name="nDni"
+            placeholder="Tu número de documento"
+            onChange={handlerOnChange}
+          />
+        </div>
+
+        {/* Username */}
+        <div className="flex flex-col">
+          <label htmlFor="username" className="text-gray-700 font-medium">
+            Username
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="text"
+            value={registerData.username}
+            id="username"
+            name="username"
+            placeholder="Nombre de usuario"
+            onChange={handlerOnChange}
+          />
+        </div>
+
+        {/* Password */}
+        <div className="flex flex-col">
+          <label htmlFor="password" className="text-gray-700 font-medium">
+            Password
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="password"
+            value={registerData.password}
+            id="password"
+            name="password"
+            placeholder="Crea una contraseña"
+            onChange={handlerOnChange}
+          />
+        </div>
+
+        {/* Errores */}
+        {errors.length > 0 && (
+          <div className="text-red-600 text-sm text-center">
+            {errors.map((error, i) => (
+              <div key={i}>{error}</div>
+            ))}
+          </div>
+        )}
+
+        {/* Botón Register */}
+        <div className="flex justify-end mt-3">
+          <button
+            type="submit"
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition"
+          >
+            REGISTER
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+);
+
+
     
 }
 

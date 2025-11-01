@@ -51,43 +51,71 @@ const handlerOnSubmit = async (event)=>{
 
 
 
-    return(
-<section className="fixed bg-black bg-opacity-50 p-6 inset-0 flex justify-center items-center">
-    <div className="bg-white p-5 rounded-lg shadow-lg size-80 ">
-        <button className="bg-slate-200 hover:bg-red-600 text-gray-800 font-bold py-1 px-2 rounded focus:outline-none " onClick={handlerOnClose}>X</button>
-         <form onSubmit={handlerOnSubmit}>
-            <div className="my-4 ">
-              <label htmlFor="username"><strong>Username:</strong></label>
-              <input className="m-0.5 rounded-md"
-              type="text" 
-              value={userdata.username}
-              id="username" 
-              name="username"
-              placeholder="username"
-              onChange={handlerOnChange}>
-              </input>
-            </div>
+    return (
+  <section className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
+    <div className="relative bg-white p-6 rounded-xl shadow-2xl w-80 font-sans">
+      
+      {/* Botón de cerrar */}
+      <button
+        onClick={handlerOnClose}
+        className="absolute top-3 right-3 bg-slate-200 hover:bg-red-600 hover:text-white text-gray-700 font-bold py-1 px-2 rounded-md transition"
+      >
+        ✕
+      </button>
 
-            <div className={styles.divPassword}>
-                <label htmlFor="password"><strong>Password:</strong></label>
-               <input className="m-0.5 rounded-md"
-               type="password" 
-               value={userdata.password}
-               id="password" 
-               name="password"
-               placeholder ="password" 
-               onChange={handlerOnChange}
-               ></input>
-            </div>
-            <div>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-            </div>
+      {/* Formulario */}
+      <form onSubmit={handlerOnSubmit} className="flex flex-col gap-5 mt-2">
+        
+        <h2 className="text-2xl font-semibold text-center text-gray-800 mb-1">
+          Iniciar sesión
+        </h2>
 
-            <button className={styles.loginButton}>LOGIN</button>
-        </form>
+        <div className="flex flex-col">
+          <label htmlFor="username" className="text-gray-700 font-medium">
+            Username:
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="text"
+            value={userdata.username}
+            id="username"
+            name="username"
+            placeholder="Ingresa tu usuario"
+            onChange={handlerOnChange}
+          />
+        </div>
+
+        <div className="flex flex-col">
+          <label htmlFor="password" className="text-gray-700 font-medium">
+            Password:
+          </label>
+          <input
+            className="border border-gray-300 rounded-md p-2 mt-1 focus:ring-2 focus:ring-blue-400 focus:outline-none placeholder-gray-400 placeholder:italic placeholder:text-sm"
+            type="password"
+            value={userdata.password}
+            id="password"
+            name="password"
+            placeholder="Ingresa tu contraseña"
+            onChange={handlerOnChange}
+          />
+        </div>
+
+        {error && (
+          <div className="text-red-600 text-sm text-center">{error}</div>
+        )}
+
+        <div className="flex justify-end mt-2">
+          <button
+            type="submit"
+            className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded-md transition"
+          >
+            LOGIN
+          </button>
+        </div>
+      </form>
     </div>
-</section>
-    )
+  </section>
+);
 }
 
 export default Login
